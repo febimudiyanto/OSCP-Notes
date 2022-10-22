@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>pfx</title>
+</head><body><b>https://github.com/crackpkcs12/crackpkcs12</b><br/>
+<br/>
+./crackpkcs12 -d /usr/share/wordlist/rockyou.txt &lt;file.pfx&gt;<br/>
+<br/>
+<br/>
+<br/>
+pfx2john.py &lt;file.pfx&gt; &gt; hashpfx.out<br/>
+<br/>
+john -format=pfx &lt;hashpfx.out&gt; -w=/usr/share/wordlist/rockyou.txt<br/>
+<br/>
+<br/>
+</body></html>

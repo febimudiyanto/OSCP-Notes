@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>bloodhound</title>
+</head><body>Installation<br/>
+<br/>
+<br/>
+1. unzip<br/>
+2. ./bloodhound<br/>
+<br/>
+<br/>
+<b>run neo4j<br/>
+</b><br/>
+<br/>
+<b>Analysis</b><br/>
+<br/>
+1. Find all Domain Admins<br/>
+2. List all Kerberoastable Accounts<br/>
+<br/>
+<br/>
+<br/>
+Attack path (while own a user)<br/>
+1. Shortest Paths to Domain Admins from Owned Principals<br/>
+2. Find Shortest Paths to Domain Admins<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<b>Get Users from bloodhound json file</b><br/>
+<br/>
+cat ...._users.json | jq '.data[].Properties | select( .enabled == true) |.name' -r &gt; users.txt<br/>
+</body></html>
