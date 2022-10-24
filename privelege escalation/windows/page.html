@@ -3,7 +3,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Windows</title>
-</head><body>Unquoted Services Paths<br/>
+</head><body><b>Grep all password<br/>
 <br/>
 <br/>
-Get-CIMInstance -class Win32_Service -Property Name, DisplayName, PathName, StartMode | Where {$_.StartMode -eq "Auto" -and $_.PathName -notlike "C:\Windows*" -and $_.PathName -notlike '"*'} | select PathName,DisplayName,Name</body></html>
+</b>type * | findstr password<b><br/>
+</b><b><br/>
+<br/>
+<br/>
+Unquoted Services Paths<br/>
+</b><br/>
+<br/>
+Get-CIMInstance -class Win32_Service -Property Name, DisplayName, PathName, StartMode | Where {$_.StartMode -eq "Auto" -and $_.PathName -notlike "C:\Windows*" -and $_.PathName -notlike '"*'} | select PathName,DisplayName,Name<br/>
+<br/>
+<br/>
+<br/>
+<b>Check Running Services</b><br/>
+<br/>
+Get-Services |where {$_.Status -eq "Running"}<br/>
+<br/>
+<br/>
+<b>Have Password in Secure String?<br/>
+<br/>
+</b>$pass = "........." |convertto-securestring<br/>
+<br/>
+$user = "&lt;domain&gt;\&lt;username&gt;"<br/>
+$cred = New-Object System.Management.Automation.PSCredential($user, $pass)<br/>
+$cred.GetNetworkCredential() | fl<br/>
+<br/>
+<img src="image.png" /><br/>
+<br/>
+or goto [<b>Active Directory</b>] &gt; [<b>Powershell</b>] &gt; [<b>Login with another user in AD</b>]</body></html>

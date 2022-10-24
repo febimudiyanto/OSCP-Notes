@@ -2,10 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Active Directory</title>
-</head><body><b>LDAP</b>&nbsp;(Port 389, 3268 and 636) &nbsp;<br/>
-<b>SMB</b>&nbsp;(Port 445)<br/>
-<b>Kerberost</b>&nbsp;(Port 88)<br/>
+<title>mount/nfs</title>
+</head><body><br/>
+<b><br/>
+</b><b>Check mount shares</b><br/>
+showmount -e &lt;ip&gt;<br/>
 <br/>
 <br/>
+sudo mount -t nfs &lt;hostname&gt;:/&lt;dir&gt; /mnt/&lt;dir&gt;<br/>
+<br/>
+sudo unmount /mnt/&lt;dir&gt;<br/>
 </body></html>

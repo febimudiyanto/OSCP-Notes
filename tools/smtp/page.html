@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>smtp</title>
+</head><body>Port 25<br/>
+<br/>
+telnet &lt;ip&gt; 25<br/>
+<br/>
+HELO test<br/>
+<br/>
+MAIL FROM: &lt;test@test.com&gt;<br/>
+<br/>
+RCPT TO: &lt;target@email.com&gt;<br/>
+<br/>
+BODY:<br/>
+<br/>
+<br/>
+<br/>
+&lt;enter&gt;<br/>
+&lt;enter&gt;<br/>
+<br/>
+<br/>
+# Alternative<br/>
+<br/>
+sendEmail -f test@test.com -t victim@test.com -u RTF -m "&lt;subject&gt;" -a &lt;file&gt; -s &lt;smtp server&gt;<br/>
+<br/>
+</body></html>

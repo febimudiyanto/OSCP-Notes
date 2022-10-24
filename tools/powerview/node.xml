@@ -2,13 +2,12 @@
 <node>
 <version>6</version>
 <dict>
-  <key>expanded</key><true/>
-  <key>title</key><string>Tools</string>
-  <key>nodeid</key><string>fa3969f7-eafd-42ea-97f4-163064f611ed</string>
-  <key>modified_time</key><integer>1666407510</integer>
+  <key>title</key><string>powerview</string>
+  <key>nodeid</key><string>1c9e9ba3-ad72-4284-ba68-7715a5e63937</string>
+  <key>modified_time</key><integer>1666604422</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
-  <key>created_time</key><integer>1666407510</integer>
+  <key>created_time</key><integer>1666604393</integer>
   <key>info_sort_dir</key><integer>1</integer>
   <key>order</key><integer>7</integer>
   <key>info_sort</key><string>order</string>

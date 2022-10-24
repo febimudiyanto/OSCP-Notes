@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+<version>6</version>
+<dict>
+  <key>title</key><string>nginx</string>
+  <key>nodeid</key><string>77d74cbb-c1ab-4b0b-8339-347a2898b1bd</string>
+  <key>modified_time</key><integer>1666489639</integer>
+  <key>version</key><integer>6</integer>
+  <key>content_type</key><string>text/xhtml+xml</string>
+  <key>created_time</key><integer>1666489619</integer>
+  <key>order</key><integer>0</integer>
+</dict>
+</node>
