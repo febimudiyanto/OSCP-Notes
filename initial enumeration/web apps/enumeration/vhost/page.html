@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>vhost</title>
+</head><body><br/>
+<br/>
+gobuster vhost -u siteisup.htb -w /usr/share/wordlists/SecLists/Discovery/DNS/bitquark-subdomains-top100000.txt -t 100<br/>
+<br/>
+<br/>
+https://pentesttools.net/sublist3r-fast-subdomains-enumeration-tool-for-penetration-testers/<br/>
+<br/>
+<br/>
+<br/>
+wfuzz -u &lt;url&gt; -H "Host: FUZZ.&lt;domain&gt;.htb" -w /usr/share/SecLists/Discovery/DNS/subdomains-top1million-5000.txt --hh &lt;some number&gt;</body></html>

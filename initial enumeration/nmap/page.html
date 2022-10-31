@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>nmap</title>
+</head><body><br/>
+<b><br/>
+</b><b>Fast Scan Firstly</b><br/>
+nmap -p- --min-rate 10000 &lt;ip&gt;<b><br/>
+</b><b><br/>
+<br/>
+<br/>
+Initial (1000 commont port)<br/>
+</b><br/>
+nmap -sC -sV -oA nmap/initial &lt;victim ip&gt;<br/>
+<br/>
+<br/>
+nmap -sC -sV -oN prelim -v -Pn &lt;victim ip&gt;<br/>
+<br/>
+<br/>
+<b>full</b><br/>
+nmap -sC -sV -p- -Pn -oN full 10.10.11.177<br/>
+<br/>
+<br/>
+<b>udp</b></body></html>

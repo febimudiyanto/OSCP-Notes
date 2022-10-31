@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Already have user and password?</title>
+</head><body><b>Login</b><br/>
+crackmapexec smb &lt;ip&gt; -u &lt;username&gt; -p &lt;password&gt;<br/>
+<br/>
+crackmapexec winrm &lt;ip&gt; -u &lt;username&gt; -p &lt;password&gt;<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<b>there are some dir shares?</b><br/>
+crackmapexec smb &lt;ip&gt; -u &lt;username&gt; -p &lt;password&gt; --shares<br/>
+<br/>
+crackmapexec smb &lt;ip&gt; -u &lt;username&gt; -p &lt;password&gt; --shares -M spider_plus<br/>
+<i>check spider_plus output in the [Tools]&gt; [json]</i><br/>
+<br/>
+<br/>
+crackmapexec smb &lt;ip&gt; -u &lt;username&gt; -p &lt;password&gt; --pass-pol<br/>
+<br/>
+<br/>
+<b>try python bloodhound<br/>
+<br/>
+<br/>
+<br/>
+smb and know share folder?<br/>
+<br/>
+</b>smbclient -U &lt;domain&gt;\\&lt;username&gt; //&lt;ip&gt;/&lt;share folder&gt;<br/>
+<br/>
+<b><br/>
+check all users<br/>
+<br/>
+</b>crackmapexec smb &lt;ip&gt; -u &lt;username&gt; -p &lt;password&gt; --users</body></html>

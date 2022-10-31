@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+<version>6</version>
+<dict>
+  <key>title</key><string>git dumper</string>
+  <key>nodeid</key><string>d1363145-82fb-4aac-8e66-f4196b5f8be0</string>
+  <key>modified_time</key><integer>1667113707</integer>
+  <key>version</key><integer>6</integer>
+  <key>content_type</key><string>text/xhtml+xml</string>
+  <key>created_time</key><integer>1667113700</integer>
+  <key>order</key><integer>3</integer>
+</dict>
+</node>

