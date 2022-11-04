@@ -2,9 +2,10 @@
 <node>
 <version>6</version>
 <dict>
+  <key>expanded</key><true/>
   <key>title</key><string>Linux</string>
   <key>nodeid</key><string>bdb72a12-5dbc-46ae-ab1f-1aea6eabbcad</string>
-  <key>modified_time</key><integer>1667264816</integer>
+  <key>modified_time</key><integer>1667528612</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
   <key>created_time</key><integer>1667223141</integer>
