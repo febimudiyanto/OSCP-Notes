@@ -10,6 +10,7 @@ nmap -p- --min-rate 10000 &lt;ip&gt;<b><br/>
 </b><b><br/>
 <br/>
 <br/>
+<br/>
 Initial (1000 commont port)<br/>
 </b><br/>
 nmap -sC -sV -oA nmap/initial &lt;victim ip&gt;<br/>
@@ -27,9 +28,8 @@ nmap -sC -sV -p- -Pn -oN full 10.10.11.177<br/>
 </b><b>nmap scripts</b><br/>
 /usr/share/nmap/scripts<b><br/>
 </b><b><br/>
-</b>Tips:<br/>
-<br/>
-if a lot of port available scan with this<br/>
+</b><b>Tips:</b><br/>
+<b>if a lot of port available scan with this</b><br/>
 <br/>
 nmap -p- --script "vuln and safe" -Pn -n &lt;ip&gt;<br/>
 <br/>

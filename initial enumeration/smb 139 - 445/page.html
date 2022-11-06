@@ -15,7 +15,15 @@ nmap -p139, 445 --script=smb-enum-shares &lt;ip&gt;<br/>
 </b><b>check anonymous login</b><br/>
 smbclient -L //&lt;ip&gt;<br/>
 <br/>
+smbmap -H &lt;ip address&gt;<br/>
 <br/>
+<br/>
+<b>#list the content</b><br/>
+smbmap -R &lt;directory open&gt; -H &lt;IP&gt;<br/>
+<br/>
+<b>#download file</b><br/>
+<br/>
+smbmap -R &lt;directory&gt; -H &lt;IP&gt; -A &lt;filename&gt; -q<br/>
 <br/>
 <br/>
 <b>If there is windows 7 try eternal blue checking.</b><br/>
