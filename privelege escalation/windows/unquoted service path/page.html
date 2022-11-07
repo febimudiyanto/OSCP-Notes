@@ -3,27 +3,51 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>unquoted service path</title>
-</head><body><b>Indentification</b><br/>
+</head><body>Potential Rabbit Hole:<b>&nbsp;<br/>
+</b><b>If you can cange a service configuration but can't stop/start the service, you may not be able to escalate privileges<br/>
 <br/>
-Powershell<br/>
+<br/>
+</b><b>Indentification</b><br/>
+<br/>
+<b>Powershell</b><br/>
 <br/>
 Get-CIMInstance -class Win32_Service -Property Name, DisplayName, PathName, StartMode | Where {$_.StartMode -eq "Auto" -and $_.PathName -notlike "C:\Windows*" -and $_.PathName -notlike '"*'} | select PathName,DisplayName,Name<br/>
 <br/>
-PowerUp<br/>
+<b>PowerUp</b><br/>
 <br/>
 <i>Import-Module .\PowerUp.ps1</i><br/>
-<i><b>Get-UnquotedServices</b><br/>
+<i>Get-UnquotedServices<br/>
 </i><br/>
 Invoke-AllChecks &nbsp;--&gt; check all privesc<br/>
+<b><br/>
+<br/>
+WinPEAS<br/>
+</b>./winPEASany.exe quite serviceinfo<br/>
+<br/>
+[search]: <b>(Unquoted Path Service)<br/>
+</b><b>&lt;get service name&gt;<br/>
 <br/>
 <br/>
+</b><b>check permission to start and stop service</b><br/>
+.\accesschk.exe /accepteula -ucqv user &lt;service name&gt;<br/>
 <br/>
-<b>How Windows execute the program with unquoted path</b><br/>
+<b>How Windows execute the program with unquoted path<br/>
+<br/>
+check access<br/>
+</b>.\accesschk.exe /accepteula -uwdq C:\<br/>
+<b><br/>
+</b>.\accesschk.exe /accepteula -uwdq "C:\Program Files\"<br/>
+<br/>
+.\accesschk.exe /accepteula -uwdq "C:\Program Files\Vuln Services"<br/>
+<br/>
+<b><br/>
+</b><br/>
 <i>C:\Program Files\Vuln Service\services.exe</i><br/>
 <br/>
 C:\Program.exe<br/>
 C:\Program Files\Vuln.exe<br/>
 C:\Program Files\Vuln Services\services.exe<br/>
+<br/>
 <br/>
 <br/>
 <br/>

