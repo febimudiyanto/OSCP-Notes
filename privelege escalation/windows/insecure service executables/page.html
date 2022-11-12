@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Insecure Service Executables</title>
+</head><body>Note: remember to create a backup of the original executable<br/>
+<br/>
+If the original service executable is modifiable by our user, we can simply replace it with our reverse shell executable.<br/>
+<br/>
+<b>Identification<br/>
+<br/>
+</b><br/>
+winPEASany.exe quite servicesinfo<br/>
+<br/>
+search: <b>File Permissions Service<br/>
+</b><b><br/>
+<br/>
+verify with accesschk<br/>
+<br/>
+</b>.\accesschk.exe /accepteula -quvw "&lt;path to service.exe"<br/>
+<br/>
+<b>check permission to start and stop service [IMPORTANT CHECK FIRST]<br/>
+</b>.\accesschk.exe /accepteula -ucqv user &lt;service name&gt;<b><br/>
+</b><br/>
+copy the shell.exe to &lt;path to service.exe&gt;<br/>
+<br/>
+<br/>
+<b>then restart the service</b></body></html>

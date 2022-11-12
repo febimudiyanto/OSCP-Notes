@@ -18,12 +18,13 @@ Import-Module .\PowerUp.ps1<br/>
 </b><br/>
 <br/>
 <br/>
-Find the path of the service and check writable access<br/>
+<b>Find the path of the service and check writable access</b><br/>
 <br/>
 Backup the service.exe to service.exe.bak<br/>
 <br/>
 <br/>
-<br/>
+<b>check permission to start and stop service [IMPORTANT CHECK FIRST]</b><br/>
+.\accesschk.exe /accepteula -ucqv user &lt;service name&gt;<br/>
 <br/>
 <br/>
 <b>Payload<br/>

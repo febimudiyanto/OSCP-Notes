@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DLL Hijacking</title>
+</head><body><br/>
+<br/>
+Identification<br/>
+<br/>
+search program: <b>Interesting Services -non Microsoft-<br/>
+</b><b><br/>
+</b>search path: <b>DLL Hijacking in PATH folders<br/>
+</b><b><br/>
+</b>search services: <b>DLL Hijack Service<br/>
+</b><b><br/>
+<br/>
+check permission to start and stop service [IMPORTANT CHECK FIRST]<br/>
+</b>.\accesschk.exe /accepteula -ucqv user &lt;service name&gt;<br/>
+<br/>
+<br/>
+<b>check the path</b><br/>
+<br/>
+sc qc &lt;service name&gt;<br/>
+<br/>
+<b>search the name of dll, which service is calling.</b><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<b>put DLL in the PATH folders<br/>
+<br/>
+<br/>
+<br/>
+restart the services<br/>
+</b></body></html>

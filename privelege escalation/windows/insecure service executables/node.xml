@@ -2,13 +2,12 @@
 <node>
 <version>6</version>
 <dict>
-  <key>expanded</key><true/>
-  <key>title</key><string>nikto</string>
-  <key>nodeid</key><string>b90d0619-80e3-437f-b9eb-2de187dd908f</string>
-  <key>modified_time</key><integer>1668120807</integer>
+  <key>title</key><string>Insecure Service Executables</string>
+  <key>nodeid</key><string>1eea2ca0-1323-457f-9e39-b431f883bdc9</string>
+  <key>modified_time</key><integer>1668257332</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
-  <key>created_time</key><integer>1667221969</integer>
+  <key>created_time</key><integer>1668127164</integer>
   <key>info_sort_dir</key><integer>1</integer>
   <key>order</key><integer>5</integer>
   <key>info_sort</key><string>order</string>
