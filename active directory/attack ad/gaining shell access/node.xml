@@ -2,14 +2,14 @@
 <node>
 <version>6</version>
 <dict>
-  <key>title</key><string>web payload</string>
-  <key>nodeid</key><string>b0479528-d7ab-4638-8429-9c1273e416f7</string>
-  <key>modified_time</key><integer>1668121257</integer>
+  <key>title</key><string>gaining shell access</string>
+  <key>nodeid</key><string>d6f8a64f-5dd4-405a-a763-bd260d27267a</string>
+  <key>modified_time</key><integer>1668440321</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
-  <key>created_time</key><integer>1668121139</integer>
+  <key>created_time</key><integer>1668440056</integer>
   <key>info_sort_dir</key><integer>1</integer>
-  <key>order</key><integer>0</integer>
+  <key>order</key><integer>4</integer>
   <key>info_sort</key><string>order</string>
 </dict>
 </node>

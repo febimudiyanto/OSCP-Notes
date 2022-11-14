@@ -2,12 +2,12 @@
 <node>
 <version>6</version>
 <dict>
-  <key>title</key><string>web payload</string>
-  <key>nodeid</key><string>b0479528-d7ab-4638-8429-9c1273e416f7</string>
-  <key>modified_time</key><integer>1668121257</integer>
+  <key>title</key><string>[run first] Capturing NTLMv2 Hashes with Responder</string>
+  <key>nodeid</key><string>bb5deb1e-ddcb-4380-a6f4-82f39c7a46dc</string>
+  <key>modified_time</key><integer>1668438710</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
-  <key>created_time</key><integer>1668121139</integer>
+  <key>created_time</key><integer>1668438362</integer>
   <key>info_sort_dir</key><integer>1</integer>
   <key>order</key><integer>0</integer>
   <key>info_sort</key><string>order</string>

