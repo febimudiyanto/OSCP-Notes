@@ -2,14 +2,14 @@
 <node>
 <version>6</version>
 <dict>
-  <key>title</key><string>gaining shell access</string>
-  <key>nodeid</key><string>d6f8a64f-5dd4-405a-a763-bd260d27267a</string>
-  <key>modified_time</key><integer>1668476480</integer>
+  <key>title</key><string>powerview</string>
+  <key>nodeid</key><string>a7766a19-1eb8-44f5-b880-e5f53481b3e0</string>
+  <key>modified_time</key><integer>1668468105</integer>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
-  <key>created_time</key><integer>1668440056</integer>
+  <key>created_time</key><integer>1668467470</integer>
   <key>info_sort_dir</key><integer>1</integer>
-  <key>order</key><integer>4</integer>
+  <key>order</key><integer>0</integer>
   <key>info_sort</key><string>order</string>
 </dict>
 </node>

