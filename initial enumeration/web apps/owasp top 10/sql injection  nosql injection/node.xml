@@ -5,6 +5,7 @@
   <key>title</key><string>SQL Injection &amp; NoSQL Injection</string>
   <key>nodeid</key><string>f07d5043-8966-4ef7-870e-df91cbd7e2ff</string>
   <key>modified_time</key><integer>1667098668</integer>
+  <key>expanded2</key><true/>
   <key>version</key><integer>6</integer>
   <key>content_type</key><string>text/xhtml+xml</string>
   <key>created_time</key><integer>1666061904</integer>

