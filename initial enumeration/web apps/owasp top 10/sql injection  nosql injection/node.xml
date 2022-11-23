@@ -2,6 +2,7 @@
 <node>
 <version>6</version>
 <dict>
+  <key>expanded</key><true/>
   <key>title</key><string>SQL Injection &amp; NoSQL Injection</string>
   <key>nodeid</key><string>f07d5043-8966-4ef7-870e-df91cbd7e2ff</string>
   <key>modified_time</key><integer>1667098668</integer>
