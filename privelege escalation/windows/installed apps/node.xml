@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+<version>6</version>
+<dict>
+  <key>title</key><string>installed apps</string>
+  <key>nodeid</key><string>3c5a0255-5ea6-4e34-b1e9-1ce0cedf13e8</string>
+  <key>modified_time</key><integer>1669332836</integer>
+  <key>version</key><integer>6</integer>
+  <key>content_type</key><string>text/xhtml+xml</string>
+  <key>created_time</key><integer>1669332479</integer>
+  <key>info_sort_dir</key><integer>1</integer>
+  <key>order</key><integer>18</integer>
+  <key>info_sort</key><string>order</string>
+</dict>
+</node>
