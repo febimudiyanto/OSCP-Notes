@@ -4,11 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>SMB Relay Attacks</title>
 </head><body>Requirements:<br/>
-1. <b>SMB Signing</b>&nbsp;must be disable on the target (disable by default)<br/>
+1. <b>SMB Signing</b>&nbsp;must be <b>disable</b>&nbsp;on the target (disable by default)<br/>
 nmap --script=smb2-security-mode -p445 10.10.10.0/24<br/>
 <br/>
---&gt; enabled but not required<br/>
---&gt; disable<br/>
+--&gt; <b>enabled but not required</b><br/>
+--&gt; <b>disable</b><br/>
+<br/>
+<br/>
+crackmapexec smb &lt;ip&gt;/24<br/>
+<br/>
+<br/>
 <b>save the target ip to target.txt</b><br/>
 <br/>
 2. Relayed user credentials must be admin on machine<br/>

