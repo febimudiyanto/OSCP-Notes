@@ -2,7 +2,7 @@
 <node>
 <version>6</version>
 <dict>
-  <key>expanded</key><false/>
+  <key>expanded</key><true/>
   <key>title</key><string>Attack AD</string>
   <key>nodeid</key><string>3f9b08ea-15f6-4841-835b-0ebee8a82d03</string>
   <key>modified_time</key><integer>1668441401</integer>

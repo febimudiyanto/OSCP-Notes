@@ -5,7 +5,7 @@
 <title>nmap</title>
 </head><body><br/>
 <b><br/>
-</b><b>Fast Scan Firstly</b><br/>
+</b><b>1. Fast Scan Firstly</b><br/>
 nmap -p- --min-rate 10000 &lt;ip&gt;<b><br/>
 </b><b><br/>
 <br/>
@@ -19,11 +19,13 @@ nmap -sC -sV -oA nmap/initial &lt;victim ip&gt;<br/>
 nmap -sC -sV -oN prelim -v -Pn &lt;victim ip&gt;<br/>
 <br/>
 <br/>
-<b>full</b><br/>
+<b>2. full</b><br/>
 nmap -sC -sV -p- -Pn -oN full 10.10.11.177<br/>
 <br/>
 <br/>
-<b>udp<br/>
+<b>3. udp<br/>
+<br/>
+<br/>
 <br/>
 </b><b>nmap scripts</b><br/>
 /usr/share/nmap/scripts<b><br/>

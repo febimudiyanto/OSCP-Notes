@@ -2,7 +2,7 @@
 <node>
 <version>6</version>
 <dict>
-  <key>expanded</key><true/>
+  <key>expanded</key><false/>
   <key>title</key><string>ssh - port 22</string>
   <key>nodeid</key><string>74cd5756-8445-46cf-8b5f-039df992ba5a</string>
   <key>modified_time</key><integer>1667634069</integer>

