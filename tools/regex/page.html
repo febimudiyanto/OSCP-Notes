@@ -7,4 +7,13 @@
 example: between quote<br/>
 <br/>
 grep -oP<b>&nbsp;`".*?"` </b>| sort -u<br/>
-</body></html>
+<br/>
+<br/>
+<b>get all mactch sub domain</b><br/>
+<br/>
+grep -o '[^/]*\.htb' index.html | sort -u &gt; list.txt<br/>
+<br/>
+<br/>
+<b>regex ip address</b><br/>
+<br/>
+grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}"</body></html>

