@@ -19,14 +19,23 @@ dirsearch -u http://siteisup.htb/dev/ &nbsp;<br/>
 <br/>
 <b>FUZZ FILES:</b><br/>
 <br/>
-wfuzz -c -z file,/usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-files.txt --hc 404 http://10.10.10.56/FUZZ<br/>
+export URL="http://192.168.53.212/FUZZ"<br/>
+<br/>
+wfuzz -c -z file,/usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-files.txt --hc 404 "$URL"<br/>
 <br/>
 <br/>
 <b>FUZZ DIR:</b><br/>
 <br/>
-wfuzz -c -z file,/usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-directories.txt --hc 404 http://10.10.10.56/<b>1</b>FUZZ<br/>
+export URL="http://192.168.53.212/FUZZ/"<br/>
+<br/>
+wfuzz -c -z file,/usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-directories.txt --hc 404 "$URL"<br/>
 <br/>
 <br/>
-dirbuster<br/>
+Didn't see anything?<br/>
+Try this:<br/>
+export URL="http://192.168.53.212/FUZZ.php"<br/>
+wfuzz -c -z file,/usr/share/wordlists/SecLists/Discovery/Web-Content/raft-medium-words.txt --hc 404 "$URL"<br/>
+<br/>
+<b>dirbuster</b><br/>
 <br/>
 <img src="image.png" /></body></html>

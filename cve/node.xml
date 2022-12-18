@@ -2,7 +2,7 @@
 <node>
 <version>6</version>
 <dict>
-  <key>expanded</key><true/>
+  <key>expanded</key><false/>
   <key>title</key><string>CVE</string>
   <key>nodeid</key><string>655beeee-6493-484f-b989-195f23d4e437</string>
   <key>modified_time</key><integer>1666488742</integer>
@@ -10,7 +10,7 @@
   <key>content_type</key><string>text/xhtml+xml</string>
   <key>created_time</key><integer>1666488742</integer>
   <key>info_sort_dir</key><integer>1</integer>
-  <key>order</key><integer>7</integer>
+  <key>order</key><integer>8</integer>
   <key>info_sort</key><string>created_time</string>
 </dict>
 </node>

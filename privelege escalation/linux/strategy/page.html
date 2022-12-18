@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>strategy</title>
+</head><body>Enumeration<br/>
+<br/>
+1. Check your user (id, whoami)<br/>
+2. Run Linux Smart Enumeartion<br/>
+3. Run LinEnum &amp; other scripts as well<br/>
+4. Manual command (https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/)<br/>
+<br/>
+<br/>
+Strategy<br/>
+<br/>
+Spend some time and read over the result of your enumeration.<br/>
+<br/>
+if Linux Smart Enumeration level 0 or 1 finds something intersting, mae a note of it.<br/>
+Avoid rabbit holes by creating a checklist of things you need for the privilege escalation method to work (requirement for privesc).<br/>
+<br/>
+<br/>
+Have a quick look around for files in user's home directory and other commont location: /var/backup /var/logs<br/>
+<br/>
+If user has a history file, read it, it may have important information like commands or even passwords.<br/>
+<br/>
+Try less steps first:<br/>
+* Sudo<br/>
+* Cron Jobs<br/>
+* SUID files<br/>
+<br/>
+<br/>
+Have a good look at root processes, enumerate their versions and search for exploits.<br/>
+<br/>
+<br/>
+Check for internal prots that you might be able to forward to your attacking machine.<br/>
+<br/>
+Re-read full enumeration dumps and highlight anything that seems odd. process or file name you aren't familiar with, an "unusual" filesystem configured (on Linux, anything that isn't ext, swap, or tmpfs), or even a username.<br/>
+<br/>
+Thinking about kernel exploits.<br/>
+<br/>
+Keep searching..!</body></html>

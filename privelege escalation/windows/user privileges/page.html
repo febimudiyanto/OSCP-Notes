@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>User Privileges</title>
+</head><body>Listing our privileges<br/>
+<br/>
+<br/>
+whoami /priv<br/>
+<br/>
+<br/>
+<b>SeImpersonatePrivilege</b><br/>
+<br/>
+-&gt; &nbsp;The Juicy Potato can exploit this ability to privilege escalation.<br/>
+<br/>
+<b>SeAssignPrimaryPrivilege</b><br/>
+<br/>
+-&gt; it enables a user to assign an access token to a new process. Also can exploit using The Juicy Potato<br/>
+<br/>
+<b>SeBackupPrivilege</b><br/>
+-&gt; user could gain access to sensitive files, or extract hashes from the registry, then do a pass-the-hash attack.<br/>
+<br/>
+<b>SeRestorePrivilege</b><br/>
+<br/>
+-&gt; Modify service bianries,overwrite DLLs used by SYSTEM processes, and modify registry settings.<br/>
+<br/>
+<b>SeTakeOwnershipPrivilege</b><br/>
+<br/>
+-&gt; lets the user take ownership over an object (the WRITE_OWNER permission)<br/>
+can grant yourself write access.<br/>
+<br/>
+<br/>
+SeTcbPrivilege<br/>
+<br/>
+<br/>
+SeCreateTokenPrivilege<br/>
+<br/>
+<br/>
+SeLoadDriverPrivilege<br/>
+<br/>
+SeDebugPrivilege (used by getsystem in meterpreter)</body></html>

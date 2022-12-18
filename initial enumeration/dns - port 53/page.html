@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>DNS - port 53</title>
+</head><body><b>find IP Address</b><br/>
+<br/>
+host &lt;url&gt;<br/>
+<br/>
+<br/>
+host -t mx &lt;url&gt;<br/>
+<br/>
+host -t txt &lt;url&gt;<br/>
+<br/>
+<br/>
+<b>BruteForce with bash<br/>
+<br/>
+</b>for sub in $(cat list.txt); do host $sub.example.com; done<b><br/>
+</b><b><br/>
+</b><br/>
+<b>Bruteforce reverse lookup</b><br/>
+<br/>
+for ip in $(seq 50 100); do host 10.10.10.$ip; done |grep -v "not found"<br/>
+<br/>
+<br/>
+<b><br/>
+</b><b>DNS zone transfer</b><br/>
+<br/>
+<i>check the dns server first:</i><br/>
+host -t ns megacorpone.com | cut -d " " -f 4 &nbsp;<br/>
+<br/>
+<i><br/>
+</i><i>then check the sub domain from that dns server address</i><br/>
+<br/>
+host -l &lt;domain name&gt; &lt;dns server address&gt; &nbsp;<br/>
+host -l example.com ns1.example.com<br/>
+<br/>
+make it a bash script.<br/>
+<br/>
+<br/>
+<br/>
+<b>DNSRecon (make sure the domain have port 53)<br/>
+(https://github.com/darkoperator/dnsrecon)<br/>
+</b><br/>
+dnsrecon -d &lt;domain&gt; -t axfr<br/>
+<br/>
+brute force sub domain with dnsrecon<br/>
+<br/>
+dnsrecon -d <b>&lt;domain&gt;</b>&nbsp;-D <b>./list.txt</b>&nbsp;-t brt<br/>
+<br/>
+<br/>
+<b>DNSenum</b><br/>
+<br/>
+dnsenum &lt;domain&gt;<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</body></html>

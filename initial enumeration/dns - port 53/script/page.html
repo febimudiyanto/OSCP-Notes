@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>script</title>
+</head><body><br/>
+<br/>
+<br/>
+<br/>
+#!/bin/bash<br/>
+<br/>
+<br/>
+domain=$1<br/>
+if [ -z "$domain" ]<br/>
+then<br/>
+echo "Usage : $0 &lt;domain&gt;"<br/>
+<br/>
+exit 0<br/>
+fi<br/>
+<br/>
+for server in `host -t ns $domain |cut -d " " -f 4`<br/>
+do<br/>
+<br/>
+host -l $domain $server |grep "has address"<br/>
+done<br/>
+<br/>
+#----------------------------------------<br/>
+<br/>
+<br/>
+./dns-axfr.sh example.com<br/>
+<br/>
+</body></html>
